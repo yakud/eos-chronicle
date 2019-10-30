@@ -336,7 +336,6 @@ constexpr void for_each_field(transaction_receipt_header*, F f) {
 }
 
 struct packed_transaction {
-    abieos::checksum256            id                       = {};
     std::vector<abieos::signature> signatures               = {};
     uint8_t                        compression              = {};
     abieos::input_buffer           packed_context_free_data = {};
@@ -345,7 +344,6 @@ struct packed_transaction {
 
 template <typename F>
 constexpr void for_each_field(packed_transaction*, F f) {
-    f("id", abieos::member_ptr<&packed_transaction::id>{});
     f("signatures", abieos::member_ptr<&packed_transaction::signatures>{});
     f("compression", abieos::member_ptr<&packed_transaction::compression>{});
     f("packed_context_free_data", abieos::member_ptr<&packed_transaction::packed_context_free_data>{});
